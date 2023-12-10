@@ -2,10 +2,10 @@ import serializePropTypes from '@drupal-jsx/serialize-prop-types';
 import { kebabCasePreserveDoubleDash } from "@drupal-jsx/drupal-utils";
 import path from 'node:path';
 
-export async function exportPropTypes(glob, outDir) {
+export async function exportPropTypes(componentFileNamesAsyncIterable, outDir) {
   const cwd = process.cwd();
   const modulePaths = {};
-  for await (const file of glob.scan('.')) {
+  for await (const file of componentFileNamesAsyncIterable) {
     const tagName = kebabCasePreserveDoubleDash(path.basename(file, '.jsx'));
     modulePaths[tagName] = `${cwd}/${file}`;
   }
