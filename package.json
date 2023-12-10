@@ -2,6 +2,7 @@
   "name": "@drupal-jsx/drupal-utils-dev",
   "type": "module",
   "dependencies": {
+    "@drupal-jsx/drupal-utils": "github:drupal-jsx/drupal-utils",
     "@drupal-jsx/serialize-prop-types": "github:drupal-jsx/serialize-prop-types"
   }
 }
