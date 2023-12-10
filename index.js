@@ -1,7 +1,16 @@
 import serializePropTypes from '@drupal-jsx/serialize-prop-types';
+import { kebabCasePreserveDoubleDash } from "@drupal-jsx/drupal-utils";
+import path from 'node:path';
 
-export async function exportPropTypes(componentsFileOrFileMap, outDir) {
-  const propTypes = await serializePropTypes(componentsFileOrFileMap);
+export async function exportPropTypes(glob, outDir) {
+  const cwd = process.cwd();
+  const modulePaths = {};
+  for await (const file of glob.scan('.')) {
+    const tagName = kebabCasePreserveDoubleDash(path.basename(file, '.jsx'));
+    modulePaths[tagName] = `${cwd}/${file}`;
+  }
+
+  const propTypes = await serializePropTypes(modulePaths);
 
   console.log("Generating *.template-info.json files for Drupal...");
   for (const tagName in propTypes) {
