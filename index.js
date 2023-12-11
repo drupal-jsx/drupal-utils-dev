@@ -1,6 +1,7 @@
 import serializePropTypes from '@drupal-jsx/serialize-prop-types';
 import { kebabCasePreserveDoubleDash } from "@drupal-jsx/drupal-utils";
 import path from 'node:path';
+import pascalCase from 'just-pascal-case';
 
 export async function exportPropTypes(componentFileNamesAsyncIterable, outDir) {
   const cwd = process.cwd();
@@ -21,4 +22,12 @@ export async function exportPropTypes(componentFileNamesAsyncIterable, outDir) {
       console.log(drupalTemplateFileName);
     }
   }
+}
+
+export function pascalCasePreserveDoubleDash(str) {
+  return str.split('--').map(pascalCase).join('--');
+}
+
+export function componentFileNameFromTwigTemplateName(twigName) {
+  return pascalCasePreserveDoubleDash('drupal-' + path.basename(twigName, '.html.twig')) + '.jsx';
 }
