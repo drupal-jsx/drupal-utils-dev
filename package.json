@@ -3,6 +3,7 @@
   "type": "module",
   "dependencies": {
     "@drupal-jsx/drupal-utils": "github:drupal-jsx/drupal-utils",
-    "@drupal-jsx/serialize-prop-types": "github:drupal-jsx/serialize-prop-types"
+    "@drupal-jsx/serialize-prop-types": "github:drupal-jsx/serialize-prop-types",
+    "just-pascal-case": "^3"
   }
 }
